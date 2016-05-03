@@ -1,3 +1,9 @@
 This is a simple tic-tac-toe implementation.
 I'll use this project as a starting point for learning
 cmake and git.
+
+This is a standard cmake project. Run 
+
+mkdir -p build && cd build && cmake .. && make 
+
+to build the project.
