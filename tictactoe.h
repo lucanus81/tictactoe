@@ -22,6 +22,7 @@ public:
     }
 
     static std::string state(game_state m);
+    static std::string move_name(current_move m);
 
 private:
     game_state winner(current_move p1, current_move p2) 

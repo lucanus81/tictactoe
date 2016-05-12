@@ -1,29 +1,10 @@
 #include <iostream>
 #include "tictactoe.h"
-
-struct input_strategy {
-    input_strategy(char what) : what_{what} {}
-    game::match::current_move operator()() {
-        switch (what_) {
-        case 's':
-        case 'S':
-            return game::match::current_move::shissor;
-        case 'r':
-        case 'R':
-            return game::match::current_move::rock;
-        case 'p':
-        case 'P':
-            return game::match::current_move::paper;
-        default:
-            return game::match::current_move::unknown;
-        }
-    }
-
-    char what_;
-};
+#include "strategy.h"
 
 int main(int argc, char** argv) 
 {
+    // First strategy for two players
     std::cout <<"Player 1 move [type S, or R, or P]: ";
     char p1{};
     std::cin >> p1;
@@ -33,8 +14,26 @@ int main(int argc, char** argv)
     std::cin >> p2;
 
     game::match m;
-    std::cout <<game::match::state( m.play(input_strategy{p1}, input_strategy{p2}) ) <<std::endl;
-    std::cout <<game::match::state( m.play(input_strategy{p1}, input_strategy{p2}) ) <<std::endl;
+    auto result = m.play(game::input_strategy{p1}, game::input_strategy{p2});
+    std::cout <<game::match::state(result) <<std::endl;
+
+    // Two computers playing against each other
+    for (size_t i=0; i<10; ++i)
+    {
+        game::random_strategy r1{};
+        game::random_strategy r2{};
+        
+        auto rr1 = r1();
+        auto rr2 = r2();
+
+        game::match m;
+        std::cout <<"Match #" <<i <<": " 
+            <<game::match::move_name(rr1)
+            <<" vs "
+            <<game::match::move_name(rr2)
+            <<" = " 
+            <<game::match::state(m.play(std::move(r1), std::move(r2))) <<std::endl;
+    }
     
     return 0;
 }
