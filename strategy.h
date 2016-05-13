@@ -52,6 +52,25 @@ struct random_strategy
     mutable game::match::current_move move_ = game::match::current_move::unknown;
 };
 
+struct always_win {
+    game::match::current_move operator()(game::match::current_move player_move) const 
+    {
+        using m = game::match::current_move;
+        
+        switch (player_move) 
+        {
+        case m::unknown:
+            return m::unknown;
+        case m::shissor:
+            return m::rock;
+        case m::rock:
+            return m::paper;
+        case m::paper:
+            return m::shissor;
+        };
+    }
+};
+
 }
 
 #endif
