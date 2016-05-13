@@ -1,3 +1,6 @@
+======================================================
+Introduction:
+======================================================
 This is a simple tic-tac-toe implementation.
 I'll use this project as a starting point for learning
 cmake and git.
@@ -7,3 +10,13 @@ This is a standard cmake project. Run
 mkdir -p build && cd build && cmake .. && make 
 
 to build the project.
+
+======================================================
+How to play the game:
+======================================================
+./game <option> <how_many_times>
+
+<option> can be 1, 2, 3, where
+    1 = two players
+    2 = player vs cpu
+    3 = cpu vs cpu

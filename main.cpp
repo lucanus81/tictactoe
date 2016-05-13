@@ -40,7 +40,7 @@ void two_players(unsigned int how_many_times)
 
         game::match m;
         auto result = m.play(game::input_strategy{p1}, game::input_strategy{p2});
-        std::cout <<"Match #" <<i <<"result: " <<game::match::state(result) <<std::endl;
+        std::cout <<"Match #" <<i <<" result: " <<game::match::state(result) <<std::endl;
     }
 }
 
