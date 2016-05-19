@@ -67,6 +67,20 @@ void cpu_vs_cpu(unsigned int how_many_times)
 
 void player_vs_cpu(unsigned how_many_times)
 {
-}
+    for (auto i=0; i<how_many_times; ++i) 
+    {
+        game::random_strategy r{};
+        auto cpu = r();
+        game::match m;
 
+        std::cout <<"Match #" <<i <<": player #1 move [type S, or R, or P]: ";
+        char p1{};
+        std::cin >> p1;
+        
+        std::cout <<"Match #" <<i <<": cpu chose "
+            <<game::match::move_name(cpu) 
+            <<" = "
+            <<game::match::state(m.play(std::move(r), game::input_strategy{p1})) <<std::endl;
+    }
+}
 

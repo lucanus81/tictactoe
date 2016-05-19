@@ -12,11 +12,11 @@ public:
     enum class current_move {unknown, paper, shissor, rock};
     enum class game_state {unknown, win_p1, win_p2, draw};
     
-    template <typename Strategy>
-    game_state play(Strategy&& player1, Strategy&& player2) 
+    template <typename Strategy1, typename Strategy2>
+    game_state play(Strategy1&& player1, Strategy2&& player2) 
     {
-        match::current_move p1 = std::forward<Strategy>(player1)();
-        match::current_move p2 = std::forward<Strategy>(player2)();
+        match::current_move p1 = std::forward<Strategy1>(player1)();
+        match::current_move p2 = std::forward<Strategy2>(player2)();
         
         return winner(p1, p2);
     }
